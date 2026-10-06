@@ -1,0 +1,287 @@
+@font-face {
+  font-family: "SVN-Clementine";
+  src: url("fonts/SVN-Clementine.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+:root {
+  --pink: #FF6E6E;
+  --blue: #5B93BC;
+  --cream: #FFF8E5;
+  --white: #fff;
+  --shadow: 0 4px 10px rgba(0,0,0,.18);
+  --u: calc(min(100vw, 1440px) / 1440);
+  --fs-title: calc(var(--u) * 39);
+  --fs-heading: calc(var(--u) * 31.5);
+  --fs-btn: max(13px, calc(var(--u) * 15.75));
+  --fs-item: max(14px, calc(var(--u) * 16.5));
+  --fs-body: max(13px, calc(var(--u) * 13.5));
+  --lh-title: calc(var(--u) * 37.5);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+img { display: block; max-width: 100%; height: auto; }
+
+/* ===== KHÓA CUỘN TOÀN TRANG ===== */
+body {
+  min-height: 100vh;
+  background: var(--cream) url("images/bg-grid.png") top center / cover no-repeat fixed;
+  font-family: "Gochi Hand", cursive;
+  color: #000;
+}
+
+.page {
+  position: relative;
+  max-width: 1440px;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 40px calc(var(--u) * 40); 
+  display: grid;
+  grid-template-columns: calc(var(--u) * 456) 1fr;
+  column-gap: calc(var(--u) * 82);
+  align-items: start;
+}
+
+.side {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 14);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.side::-webkit-scrollbar { display: none; }
+
+/* ===== ĐÃ FIX LỖI CUỘN Ở ĐÂY ===== */
+.content {
+  /* Ép giới hạn chiều cao = màn hình trừ đi 80px (padding trên dưới) */
+  height: calc(100vh - 80px); 
+  display: flex;
+  flex-direction: column; 
+  min-height: 0; /* Bắt buộc phải có để Flexbox không bị tràn */
+}
+
+.back {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--u) * 12);
+  height: calc(var(--u) * 43);
+  padding: 0 calc(var(--u) * 20);
+  margin: 0 0 calc(var(--u) * 14) calc(var(--u) * 7);
+  background: var(--pink);
+  color: #fff;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: var(--fs-btn);
+  box-shadow: var(--shadow);
+}
+.back svg { width: 1.6em; height: 1em; }
+
+.card {
+  background: var(--cream);
+  border-radius: calc(var(--u) * 14);
+  box-shadow: var(--shadow);
+}
+
+.intro { padding: calc(var(--u) * 28) calc(var(--u) * 36) calc(var(--u) * 28); }
+.intro h1 {
+  color: #000;
+  font-family: "SVN-Clementine", cursive;
+  font-size: var(--fs-title);
+  font-weight: 400;
+  line-height: var(--lh-title);
+  margin-bottom: calc(var(--u) * 16);
+}
+.intro p { font-size: var(--fs-body); line-height: 1.55; }
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--u) * 8);
+  padding: calc(var(--u) * 20) calc(var(--u) * 36);
+}
+
+.pill {
+  display: inline-flex; 
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  height: calc(var(--u) * 36);
+  min-height: 34px;
+  padding: 0 calc(var(--u) * 15);
+  border: 1px solid #000;
+  border-radius: 999px;
+  background: transparent;
+  color: #000;
+  cursor: pointer;
+  text-align: center;
+  font: 400 var(--fs-btn)/normal "Gochi Hand", cursive;
+  transition: background .2s, color .2s;
+}
+.pill:hover { background: rgba(91,147,188,.18); }
+.pill.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+.pill:focus-visible { outline: 2px solid var(--pink); outline-offset: 2px; }
+
+.vinyl { width: calc(var(--u) * 260); margin: calc(var(--u) * 20) 0 0 calc(var(--u) * 145); }
+
+/* Khối Tabs nằm an toàn phía trên Panel */
+.tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--u) * 25);
+  margin-bottom: calc(var(--u) * 19);
+  flex-shrink: 0; 
+}
+
+.tab {
+  height: calc(var(--u) * 67);
+  min-height: 52px;
+  border: 0;
+  border-radius: calc(var(--u) * 14);
+  background: var(--white);
+  color: var(--pink);
+  cursor: pointer;
+  text-align: center;
+  font: 400 var(--fs-heading)/var(--lh-title) "SVN-Clementine", cursive;
+  box-shadow: var(--shadow);
+  transition: background .2s;
+}
+.tab.active { background: var(--cream); }
+
+/* KHUNG PANEL CÓ THỂ CUỘN */
+.panel {
+  background: var(--cream);
+  border-radius: calc(var(--u) * 14);
+  box-shadow: var(--shadow);
+  padding: calc(var(--u) * 28) calc(var(--u) * 46) calc(var(--u) * 60);
+  
+  flex-grow: 1; 
+  overflow-y: auto; 
+  min-height: 0; /* Bắt buộc có để kích hoạt thanh cuộn */
+  scrollbar-width: none;
+}
+.panel::-webkit-scrollbar { display: none; }
+
+.panel[hidden] { display: none; }
+
+.panel-community { padding-top: calc(var(--u) * 48); }
+.panel-community .item { margin-bottom: calc(var(--u) * 70); }
+.panel-community .item-top { align-items: start; }
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 20);
+  margin: calc(var(--u) * 10) 0 calc(var(--u) * 40);
+}
+.section-title::before, .section-title::after {
+  content: "";
+  flex: 1;
+  height: 3px;
+  background: var(--blue);
+  border-radius: 3px;
+}
+.section-title h2 {
+  color: var(--blue);
+  text-align: center;
+  font: 400 var(--fs-heading)/var(--lh-title) "SVN-Clementine", cursive;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 0.9fr 1.5fr;
+  column-gap: calc(var(--u) * 30);
+  align-items: center;
+  margin-bottom: calc(var(--u) * 50);
+}
+.item.reverse { grid-template-columns: 1.5fr 0.9fr; }
+.item.reverse .item-text { order: 2; }
+
+.item h3 {
+  color: var(--blue);
+  font-size: var(--fs-item);
+  font-weight: 400;
+  line-height: 1.35;
+  padding-bottom: calc(var(--u) * 28);
+  border-bottom: 2px solid #000;
+  margin-bottom: calc(var(--u) * 16);
+}
+.item p { font-size: var(--fs-body); line-height: 1.5; }
+
+.btn {
+  display: inline-block;
+  margin-top: calc(var(--u) * 24);
+  padding: calc(var(--u) * 9) calc(var(--u) * 22);
+  border: 1px solid #000;
+  border-radius: 999px;
+  color: #000;
+  text-decoration: none;
+  text-align: center;
+  font: 400 var(--fs-btn)/normal "Gochi Hand", cursive;
+  transition: background .2s;
+}
+.btn:hover { background: rgba(255,110,110,.2); }
+
+.item img { filter: drop-shadow(0 3px 5px rgba(0,0,0,.25)); }
+
+.gallery { margin-top: calc(var(--u) * 60); }
+
+/* ===== ĐIỆN THOẠI & TABLET ===== */
+@media (max-width: 1024px) {
+  :root {
+    --fs-title: 34px; --fs-heading: 28px; --fs-btn: 16px; --fs-item: 18px; --fs-body: 15px;
+    --lh-title: 40px;
+    --u: calc(100vw / 1024);
+  }
+  
+  body { 
+    height: auto; 
+    overflow: auto; 
+  }
+  
+  .page {
+    height: auto;
+    display: block;
+    padding: 24px 20px 60px;
+  }
+  .side { 
+    height: auto; 
+    overflow-y: visible; 
+  }
+  .content {
+    height: auto; /* Mở khóa giới hạn chiều cao trên di động */
+    display: block;
+    margin-top: 24px;
+  }
+  .panel { 
+    overflow-y: visible; 
+  }
+  
+  .back { margin: 0 0 4px; height: 44px; padding: 0 20px; gap: 12px; }
+  .intro { padding: 28px 24px; }
+  .intro h1 { margin-bottom: 18px; }
+  .nav { padding: 20px 24px; gap: 8px; }
+  .pill { height: 38px; padding: 0 16px; }
+  .vinyl { width: 160px; margin: 0 auto; }
+
+  .tabs { gap: 12px; margin-bottom: 14px; }
+  .tab { height: 60px; font-size: 22px; line-height: 1.1; padding: 0 8px; }
+  .panel { padding: 24px 22px 40px; }
+  .section-title { margin: 8px 0 28px; gap: 14px; }
+  .item, .item.reverse {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+    margin-bottom: 40px;
+  }
+  .item.reverse .item-text { order: 0; }
+  .item h3 { padding-bottom: 18px; margin-bottom: 12px; }
+  .btn { margin-top: 18px; padding: 8px 22px; }
+  .gallery { margin-top: 32px; }
+}
+
+@media (max-width: 520px) {
+  .tab { font-size: 17px; height: 56px; }
+  .section-title h2 { font-size: 24px; line-height: 1.2; }
+  .page { padding: 16px 14px 48px; }
+}

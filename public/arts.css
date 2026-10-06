@@ -1,0 +1,224 @@
+@font-face {
+  font-family: "SVN-Clementine";
+  src: url("fonts/SVN-Clementine.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+:root {
+  --pink: #FF6E6E;
+  --blue: #5B93BC;
+  --cream: #FFF8E5;
+  --white: #fff;
+  --shadow: 0 4px 10px rgba(0,0,0,.18);
+  --u: calc(min(100vw, 1440px) / 1440);
+  --fs-title: calc(var(--u) * 39);
+  --fs-heading: calc(var(--u) * 31.5);
+  --fs-btn: max(13px, calc(var(--u) * 15.75));
+  --fs-item: max(14px, calc(var(--u) * 16.5));
+  --fs-body: max(13px, calc(var(--u) * 13.5));
+  --lh-title: calc(var(--u) * 37.5);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+img { display: block; max-width: 100%; height: auto; }
+
+body {
+  min-height: 100vh;
+  background: var(--cream) url("images/bg-grid.png") top center / cover no-repeat fixed;
+  font-family: "Gochi Hand", cursive;
+  color: #000;
+}
+
+.page {
+  position: relative;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 40px calc(var(--u) * 40) calc(var(--u) * 100);
+}
+
+.side {
+  position: fixed;
+  top: 40px;
+  width: calc(var(--u) * 456);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 14);
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  scrollbar-width: none;
+  z-index: 100;
+}
+.side::-webkit-scrollbar { display: none; }
+
+.content {
+  margin-left: calc(var(--u) * 538);
+}
+
+.back {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--u) * 12);
+  height: calc(var(--u) * 43);
+  padding: 0 calc(var(--u) * 20);
+  margin: 0 0 calc(var(--u) * 14) calc(var(--u) * 7);
+  background: var(--pink);
+  color: #fff;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: var(--fs-btn);
+  box-shadow: var(--shadow);
+}
+.back svg { width: 1.6em; height: 1em; }
+
+.card {
+  background: var(--cream);
+  border-radius: calc(var(--u) * 14);
+  box-shadow: var(--shadow);
+}
+
+.intro { padding: calc(var(--u) * 28) calc(var(--u) * 36) calc(var(--u) * 28); }
+.intro h1 {
+  color: #000;
+  font-family: "SVN-Clementine", cursive;
+  font-size: var(--fs-title);
+  font-weight: 400;
+  line-height: var(--lh-title);
+  margin-bottom: calc(var(--u) * 16);
+}
+.intro p { font-size: var(--fs-body); line-height: 1.55; }
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--u) * 8);
+  padding: calc(var(--u) * 20) calc(var(--u) * 36);
+}
+
+.pill {
+  display: inline-flex; 
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  height: calc(var(--u) * 36);
+  min-height: 34px;
+  padding: 0 calc(var(--u) * 15);
+  border: 1px solid #000;
+  border-radius: 999px;
+  background: transparent;
+  color: #000;
+  cursor: pointer;
+  text-align: center;
+  font: 400 var(--fs-btn)/normal "Gochi Hand", cursive;
+  transition: background .2s, color .2s;
+}
+.pill:hover { background: rgba(91,147,188,.18); }
+.pill.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+.pill:focus-visible { outline: 2px solid var(--pink); outline-offset: 2px; }
+
+.decor { width: calc(var(--u) * 460); margin: calc(var(--u) * 10) 0 0 calc(var(--u) * 10); }
+
+.panel {
+  background: var(--cream);
+  border-radius: calc(var(--u) * 14);
+  box-shadow: var(--shadow);
+}
+.panel-arts { padding: calc(var(--u) * 40) calc(var(--u) * 46) calc(var(--u) * 60); }
+
+.head {
+  display: grid;
+  grid-template-columns: 1fr 1.45fr;
+  column-gap: calc(var(--u) * 30);
+  align-items: start;
+  margin-bottom: calc(var(--u) * 24);
+}
+.head h2 {
+  color: var(--blue);
+  font: 400 var(--fs-heading)/var(--lh-title) "SVN-Clementine", cursive;
+  padding-left: calc(var(--u) * 30);
+}
+.head p { font-size: var(--fs-body); line-height: 1.5; }
+.head.sub h2 { font-size: calc(var(--u) * 26); }
+
+.shot { margin: 0 auto calc(var(--u) * 60); filter: drop-shadow(0 3px 5px rgba(0,0,0,.25)); }
+.shot.certs { width: 88%; margin-bottom: calc(var(--u) * 40); }
+
+.soul-container {
+  position: relative;
+  display: table;
+  margin: 0 auto calc(var(--u) * 120);
+}
+
+.soul-container .shot.wide {
+  margin: 0;
+  display: block;
+}
+
+.heart-sticker {
+  position: absolute;
+  bottom: calc(var(--u) * -90);
+  right: calc(var(--u) * -110);
+  width: calc(var(--u) * 200);
+  z-index: 10;
+  filter: drop-shadow(4px 8px 12px rgba(0,0,0,0.3));
+}
+
+.item { display: grid; }
+.item.half, .item.half.reverse { grid-template-columns: 1fr 1fr; column-gap: calc(var(--u)*30); margin-bottom: calc(var(--u) * 40); align-items: center;}
+.item.half.reverse .head { order: 2; }
+.item.half .head { margin: 0; display: block; }
+.item.half .head h2 { padding-left: 0; margin-bottom: calc(var(--u) * 14); }
+.item.half img { width: 88%; margin: 0 auto; filter: drop-shadow(0 3px 5px rgba(0,0,0,.25)); }
+.item.bottom { align-items: end; }
+
+@media (max-width: 1024px) {
+  :root {
+    --fs-title: 34px; --fs-heading: 28px; --fs-btn: 16px; --fs-item: 18px; --fs-body: 15px;
+    --lh-title: 40px;
+    --u: calc(100vw / 1024);
+  }
+  .page {
+    padding: 24px 20px 60px;
+  }
+  .side { 
+    position: static; 
+    width: 100%;
+    gap: 16px; 
+    max-height: none; 
+    overflow-y: visible; 
+  }
+  .content {
+    margin-left: 0;
+    margin-top: 24px;
+  }
+  .back { margin: 0 0 4px; height: 44px; padding: 0 20px; gap: 12px; }
+  .intro { padding: 28px 24px; }
+  .intro h1 { margin-bottom: 18px; }
+  .nav { padding: 20px 24px; gap: 8px; }
+  .pill { height: 38px; padding: 0 16px; }
+  
+  .panel-arts { padding: 24px 22px 40px; }
+  .head { grid-template-columns: 1fr; row-gap: 10px; margin-bottom: 18px; }
+  .head h2 { padding-left: 0; }
+  .head.sub h2 { font-size: 24px; }
+  
+  .shot, .shot.certs { width: 100%; margin-bottom: 32px; }
+  
+  .soul-container { display: block; width: 100%; margin-bottom: 60px; }
+  .heart-sticker {
+    bottom: -45px;
+    right: -35px;
+    width: 130px;
+  }
+  
+  .item.half, .item.half.reverse { grid-template-columns: 1fr; row-gap: 18px; margin-bottom: 32px; }
+  .item.half.reverse .head { order: 0; } 
+  .item.half img { width: 100%; }
+  
+  .decor { width: min(320px, 80%); margin: 0 auto; }
+}
+
+@media (max-width: 520px) {
+  .head.sub h2 { font-size: 24px; line-height: 1.2; }
+  .page { padding: 16px 14px 48px; }
+}
