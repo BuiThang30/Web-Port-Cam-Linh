@@ -17,10 +17,14 @@ html, body {
 
 .stage {
   position: absolute;
-  top: 0; left: 0;
+  top: 0; 
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
   width: 1440px;
   height: 810px; 
-  transform-origin: top left;
+  transform-origin: center; /* Đổi thành center để nếu có JS scale thì nó thu phóng từ giữa */
 }
 
 .mobile-card {
